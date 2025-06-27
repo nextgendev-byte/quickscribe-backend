@@ -1,0 +1,5 @@
+# Activate your virtual environment
+source [project_name]/bin/activate  # On Windows: [project_name]\Scripts\activate
+
+# Generate requirements file
+pip freeze > requirements.txt

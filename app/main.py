@@ -25,7 +25,6 @@ async def get_file_input(file: UploadFile = File(...)):
     # Decode content
     try:
         text_content = content.decode("utf-8")
-        print(text_content, "BROOOOOOOOOOOOOO")
     except UnicodeDecodeError:
         raise HTTPException(
             status_code=400, detail="File must be valid UTF-8 encoded text"

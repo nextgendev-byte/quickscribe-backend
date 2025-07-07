@@ -73,7 +73,6 @@ python-pam==2.0.2
 pyudev==0.24.3
 pyxdg==0.27
 PyYAML==6.0.1
-pyynl @ file:///builddir/build/BUILD/kernel-6.15.3-build/kernel-6.15.3/linux-6.15.3-100.fc41.x86_64/tools/net/ynl
 rapidfuzz==3.5.2
 referencing==0.36.2
 regex==2024.11.6
@@ -83,8 +82,6 @@ requests-ftp==0.3.1
 rpds-py==0.19.1
 rpm==4.20.1
 s3transfer==0.13.0
-selinux @ file:///builddir/build/BUILD/libselinux-3.7-build/libselinux-3.7/src
-sepolicy @ file:///builddir/build/BUILD/policycoreutils-3.7-build/selinux-3.7/python/sepolicy
 setools==4.5.1
 setuptools==69.2.0
 simpleaudio==1.0.4
@@ -101,3 +98,6 @@ typing_extensions==4.12.2
 urllib3==1.26.20
 uvicorn==0.35.0
 xkbregistry==0.3
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+python-dotenv==1.0.0

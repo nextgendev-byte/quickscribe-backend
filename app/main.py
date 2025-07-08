@@ -17,7 +17,6 @@ def read_root():
 
 @app.post("/upload")
 async def get_file_input(file: UploadFile = File(...)):
-    print(file, "PURI FILE")
 
     # Read file content
     content = await file.read()
@@ -33,6 +32,6 @@ async def get_file_input(file: UploadFile = File(...)):
 
 
 @app.post("/ai")
-async def get_ai_response(prompt: Annotated[str, Form(...)]):
+def get_ai_response(prompt: Annotated[str, Form(...)]):
     response: str = ai(prompt)
     return {"response": response}

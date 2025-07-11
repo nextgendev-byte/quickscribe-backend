@@ -1,0 +1,1 @@
+sudo nmcli device set wlp45s0 managed no

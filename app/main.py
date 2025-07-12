@@ -1,6 +1,10 @@
 from fastapi import FastAPI, UploadFile, File
 from app.services.media.upload import uploadMedia
 from app.translate import translate
+from app.db import engine
+from app.models.subtitle import Base
+
+Base.metadata.create_all(engine)
 
 app = FastAPI()
 

@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 
 from app.services.media.upload import uploadMedia
 from app.services.file_chunking.chunking import chunk_srt_file
+from app.services.file_operations.write_file_from_string_array import (
+    write_file_from_array,
+)
 
 
 load_dotenv()
@@ -37,12 +40,12 @@ Now, translate the following subtitle chunk into Hindi:
 history = []
 
 
-async def ai(prompt, file: UploadFile = File(...)):
+async def translate(file: UploadFile = File(...)):
     try:
         response = await uploadMedia(file)
         file_path = response.get("file_path")
+        file_name = response.get("file_name")
         chunks = chunk_srt_file(file_path, 100)
-        print(f"{chunks}\n\n HAMARE CHUNKS")
 
         responseArray = []
 
@@ -52,14 +55,8 @@ async def ai(prompt, file: UploadFile = File(...)):
             )
             responseArray.append(response.text)
 
-        # Append the AI's reply so it's included next time
-        # print(f"{text}")
+        write_file_from_array(f"uploads/ts-{file_name}", responseArray)
         return responseArray
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-# The client gets the API key from the environment variable `GEMINI_API_KEY`.
-# client = genai.Client()
-# myfile = client.files.upload(file=file_path)

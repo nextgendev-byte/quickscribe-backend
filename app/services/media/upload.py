@@ -23,7 +23,7 @@ async def uploadMedia(file: UploadFile = File(...)):
         with open(file_path, "wb") as buffer:
             buffer.write(await file.read())
         return {
-            "file_name": f"{file.filename} is uploaded successfully!",
+            "file_name": file.filename,
             "file_path": file_path,
         }
     except Exception as e:

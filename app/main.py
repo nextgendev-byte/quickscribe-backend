@@ -1,8 +1,6 @@
-from typing import Annotated
-from fastapi import FastAPI, Form, UploadFile, File, HTTPException
-from pydantic import BaseModel
-from app.ai import ai
+from fastapi import FastAPI, UploadFile, File
 from app.services.media.upload import uploadMedia
+from app.translate import translate
 
 app = FastAPI()
 
@@ -13,13 +11,11 @@ def read_root():
 
 
 @app.post("/upload")
-async def get_file_input(file: UploadFile = File(...)):
+async def upload(file: UploadFile = File(...)):
     return await uploadMedia(file)
 
 
-@app.post("/ai")
-async def get_ai_response(
-    prompt: Annotated[str, Form(...)], file: UploadFile = File(...)
-):
-    response: str = await ai(prompt, file)
+@app.post("/translate")
+async def translateFile(file: UploadFile = File(...)):
+    response: str = await translate(file)
     return {"response": response}

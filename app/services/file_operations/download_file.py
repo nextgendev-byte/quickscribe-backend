@@ -5,14 +5,12 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
+
 @app.get("/download/{filename}")
-def download_file(filename: str):
-    file_path = os.path.join("translated_srt", filename)
+def download_file(file_path: str):
 
     if os.path.exists(file_path):
         return FileResponse(
-            path=file_path,
-            filename=filename,
-            media_type="application/octet-stream"
+            path=file_path, filename="result.srt", media_type="application/octet-stream"
         )
     return {"error": "File not found"}
